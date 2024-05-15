@@ -1,14 +1,20 @@
-/* ==UserStyle==
-@name         Debloated Typeracer
-@version      20240513.15.53
-@namespace    https://userstyles.world/user/Perseus333
-@description  Typeracer is bloated no more.
-@author       Perseus333
-@license      MIT
-==/UserStyle== */
-
 @-moz-document url-prefix("https://play.typeracer.com/") {
 /*Simpler Interface for Typerracer*/
+
+
+/*TODO
+- [DONE] Re enable replay styling
+- [DONE] Centering the countdown
+- [DONE] Remove border of next race and put on background
+- [DONE] Polish stats after race
+- [DONE] Make typing review graph bigger
+
+- [DISCARDED] Change background in stats graph svg
+- [DISCARDED] Change in test color words correctness
+*/
+
+
+
 
 /*General Edits*/
 
@@ -31,7 +37,7 @@
 .newEastWidget, /*Unnecessary blank space before footer*/
 .ag-logo, /*The logo in the footer*/
 .change-theme-button, /*Redundant huge change theme button*/
-.copyright /*The copyright - it isn't illegal to hide is it?*/
+.copyright /*The copyright - it isn't illegal to hide it, is it?*/
 {
     display: none !important;
 }
@@ -71,8 +77,11 @@ table.themeHeader > tbody > tr {
 }
 
 /*Removes the colored backgrounds from the stats and settings buttons*/
+/*also from the create account and sign in buttons when logged out*/
 .stat,
-.ImageButton{
+.ImageButton,
+.createAcct,
+.signIn {
     background-color: transparent !important;
 }
 
@@ -95,7 +104,6 @@ table.themeHeader > tbody > tr {
 
 /*Removes a bunch of backgrounds*/
 
-body .podContainer, /*FU parent*/
 body .sidebarBlocks iframe /*FU itself*/,
 body .container .OptionsWrapper /*Race options*/
 {
@@ -126,13 +134,6 @@ body .container .OptionsWrapper /*Race options*/
     overflow: hidden;
 }
 
-.off {
-    background-color: var(--surface1) !important;
-}
-
-.on {
-    background-color: var(--red) !important;
-}
 /*End of "Instant Death" section*/
 
 
@@ -186,6 +187,22 @@ hosted in a different url*/
 
 
 
+/*POP-UP Settings (Create Account/Sign In)*/
+
+/*The closing button for the pop-up*/
+.xButton {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+/*Icon besides the header of the pop-up*/
+.CaptionWithIcon>img {
+    display: none !important;
+}
+
+
+
+
 /*
  ====================
  =  Race Settings   = 
@@ -208,13 +225,6 @@ hosted in a different url*/
     scale: 1.5;
 } 
 
-/*Removes useless stats after the race (replay)*/
-.TypingLogReplayPlayer > tbody:nth-child(1) > tr:nth-child(n+1):nth-child(-n+7) {
-    display: none !important;
-}
-
-
-
 /*Removes the icon of the text you just typed (after the race)*/
 .textInfoView > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
  display: none !important;
@@ -230,20 +240,31 @@ hosted in a different url*/
 }
 
 
+/*Nicer race countdown*/
+.countdownPopup {
+    left: 47% !important;
+    top: 20% !important;
+    scale: 1.5 !important;
+    border: none !important;
+    border-radius: 10px !important;
+}
 
 .raceLeaveLink, /*Leave Race Button "Return to main menu"*/
 .raceAgainLink, /*Race again Button*/
-.mainViewport table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" Button*/
+table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" Button*/
 {
     background-color: transparent !important;
-    border: 1px solid white !important;
+    border: none !important;
 }
 
+
+
+
 /*Images of the Stats (after the race)*/
-.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(1) td:nth-child(1),
-.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(2) td:nth-child(1),
-.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(3) td:nth-child(1),
-.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(4) td:nth-child(1)
+table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(1) td:nth-child(1),
+table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(2) td:nth-child(1),
+table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(3) td:nth-child(1),
+table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(4) td:nth-child(1)
 {
     background-color: transparent !important;
     background-image: none !important;
@@ -256,11 +277,42 @@ hosted in a different url*/
 }
 
 /*Reduces the line height for the stats after the text to make it more compact*/
-.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr > td:nth-child(1) {
+table.textInfoView > tbody > tr .tblOwnStats tr > td:nth-child(1) {
     line-height: initial !important;
 }
 
+/*The border of the graph in the stats after the race*/
+.IncrementSpeedChart {
+    border: none !important;
+}
 
+
+/*Typing Review container*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td,
+table.TypingLogReplayPlayer > tbody > tr:nth-child(9) > td {
+    border: none !important;
+}
+
+/*Typing review replay controls*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(4) table tbody tr {
+    border-radius: 10px !important;
+    flex: 0 !important;
+}
+
+/*Typing review step control arrows*/
+.TypingLogReplayPlayer > tbody:nth-child(1) > tr:nth-child(7) > td:nth-child(1) > table:nth-child(1) {
+    width: 100px !important;
+}
+
+table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td {
+    /*border-radius: 0px !important;*/
+    margin-top: 0px !important;
+}
+
+/*Makes speed graph bigger when hovering over it*/
+.IncrementSpeedChart>div>div>div>svg:hover {
+    scale: 1.7;
+}
 
 
 
@@ -276,14 +328,17 @@ hosted in a different url*/
 /*Catppucin Mocha Color Scheme*/
 :root {
     --crust:    #11111b;
+    --mantle:   #181825;
     --base:     #1e1e2e;
     --surface0: #313244;
     --surface1: #45475a;
     --surface2: #585b70;
+    --overlay1: #7f849c;
     --subtext0: #a6adc8;
     --subtext1: #bac2de;
     --text:     #cdd6f4;
     --red:      #f38ba8;
+    --green:    #a6e3a1;
 }
 
 
@@ -295,10 +350,12 @@ hosted in a different url*/
     --surface0: #2e383c;
     --surface1: #374145;
     --surface2: #414b50;
+    --overlay1: #475258;
     --subtext0: #dbbc7f;
     --subtext1: #a7c080;
     --text:     #d3c6aa;
     --red:      #e67e80;
+    --green:    #83c092;
 }
 */
 
@@ -306,20 +363,38 @@ hosted in a different url*/
 /*Color palettes to add: Gruvbox and dracula */
 
 /*Sets the color of most text*/
+body,
 .textInfoAuthor,
 .textInfoContributor,
 a,
-.mainViewport table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr,
+table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr,
 h1,
 h2,
 h3,
-h4
+h4,
+
+.userInfo, /*User stats*/
+.gameView .gameStatusLabel, /*Status of the race*/
+.scoreboard .row, /*Usernames of participants in the race*/
+.xButton, /*Closing button of the create account/sign-up pop-up*/
+
+/*Stats after the race*/
+table.textInfoView > tbody > tr .tblOwnStats .tblOwnStatsNumber,
+table.textInfoView > tbody > tr .tblOwnStats tr > td,
+table.textInfoView > tbody > tr .textInfoHeader,
+table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td .lblSectionHeading,
+
+/*Typing review replay stats text*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(3) .statusIndicator,
+table.TypingLogReplayPlayer > tbody > tr:nth-child(3) .lblStatusIndicator,
+div.TypingDisplaySection
 {
     color: var(--text) !important;
 }
 
+
 /*Sets the color of the footer*/
-body.redesigndark .footer-cont {
+.footer-cont {
     background-color: var(--crust) !important;
 }
 
@@ -333,20 +408,129 @@ body .flex-wrapper {
     background-color: var(--base) !important;
 }
 
+/*The main container for the site, 
+smaller than general background*/
+.podContainer {
+    background-color: var(--surface0) !important;
+}
+
 /*Sets the header color*/
 body .container .themeHeader {
     background-color: var(--crust) !important;
 }
 
+.off {
+    background-color: var(--surface1) !important;
+}
+
+.on {
+    background-color: var(--red) !important;
+}
+
 /*Sets the color of the input container background at the race*/
-body .mainViewport table.inputPanel .txtInput {
+
+table.inputPanel .txtInput {
     background-color: var(--surface1) !important;
 }
 
 /*Sets the color of the text container background at the race*/
-body .mainViewport table.inputPanel {
+table.inputPanel {
     background-color: var(--crust) !important;
 
+}
+/*Dotted lines in the race track*/
+.progressBar {
+    border-color: var(--surface2) !important;
+}
+
+/*The countdown container before the race*/
+.countdownPopup {
+    background-color: var(--base) !important;
+}
+
+/*Usernames of "dead" participants in the race*/
+.scoreboard .row .progressBar .avatar-dead {
+    color: var(--overlay1) !important;
+}
+
+
+.raceLeaveLink, /*Leave Race Button "Return to main menu"*/
+.raceAgainLink, /*Race again Button*/
+table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" Button*/
+{
+    background-color: var(--surface1) !important;
+}
+
+/*Headers of the stats after race*/
+table.textInfoView > tbody > tr:nth-child(1) td, /*Quick info, speed, etc. header*/
+table.textInfoView > tbody > tr:nth-child(3) td /*Typing review header*/
+{
+    background-color: var(--surface1) !important;
+}
+
+/*Main contrainers for all stats after race*/
+table.textInfoView > tbody > tr:nth-child(2) > td, /*Author, quick info, speed, etc.*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td, /*Analysis (replay)*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(9) > td /*Speed graph + mistakes*/
+{
+    background-color: var(--base) !important;
+}
+
+/*Typing review main containers*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(-n+7) > td,
+table.TypingLogReplayPlayer > tbody > tr:nth-child(9) > td
+{
+    background-color: var(--base) !important;
+    color: var(--text) !important;
+}
+
+/*Typing review replay controls container*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(4) table tbody tr {
+    background-color: var(--surface0) !important;
+}
+
+/*Typing review text display containers*/
+div.TypingDisplaySection {
+    background-color: var(--crust) !important;
+}
+
+/*Correct characters in review replay*/
+.acceptedChars {
+    color: var(--green) !important;
+}
+
+/*Incorrect characters in review replay real typed text*/
+.errChar {
+    background-color: transparent !important;
+    color: var(--red)  !important;
+    border: none !important;
+}
+    
+/*Container of the typing speed graph after race*/
+.IncrementSpeedChart {
+    background-color: transparent !important;
+}
+
+
+/*Pop-up main backgrouund*/
+.DialogBox {
+    background-color: var(--base) !important;
+}
+
+/*Currently active/open panel in the create account/sign-up pop-up*/
+.gwt-DisclosurePanel-open {
+    background-color: var(--surface1) !important;
+}
+
+/*Non opened panels in the create account/sign-up pop-up*/
+.gwt-DisclosurePanel-closed {
+    background-color: var(--surface0) !important;
+}
+
+/*Sign-up/Create account buttons in the pop-up*/
+.DialogBox button[type="button"] {
+    background-color: var(--surface2) !important;
+}
 
 
 
@@ -382,9 +566,7 @@ are all in the same page*/
 
 .sidebarBlock__content {
     border-radius: 8px;
-    background-color: transparent !important;
-    border: 1px solid;
-    border-color: #ffffff24 !important;
+    border: none !important;
 }
 
 /*The container of the races*/
@@ -401,6 +583,50 @@ are all in the same page*/
     margin-bottom: 1em;
 }
 
+/*
+ ==================
+ =   Recoloring   =
+ ==================
+*/
+
+
+/*Catppucin Mocha Color Scheme*/
+:root {
+    --crust:    #11111b;
+    --mantle:   #181825;
+    --base:     #1e1e2e;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --subtext0: #a6adc8;
+    --subtext1: #bac2de;
+    --text:     #cdd6f4;
+    --red:      #f38ba8;
+}
+
+
+/*Everforest Dark Color Scheme*/
+/*
+:root {
+    --crust:    #1e2326;
+    --base:     #272e33;
+    --surface0: #2e383c;
+    --surface1: #374145;
+    --surface2: #414b50;
+    --subtext0: #dbbc7f;
+    --subtext1: #a7c080;
+    --text:     #d3c6aa;
+    --red:      #e67e80;
+}
+*/
+
+/*Feel free to use whichever color palette you want */
+/*Color palettes to add: Gruvbox and dracula */
+
+
+.sidebarBlock__content {
+    background-color: var(--surface1) !important;
+}
 
 
 }
