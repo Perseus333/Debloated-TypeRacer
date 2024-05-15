@@ -1,0 +1,406 @@
+/* ==UserStyle==
+@name         Debloated Typeracer
+@version      20240513.15.53
+@namespace    https://userstyles.world/user/Perseus333
+@description  Typeracer is bloated no more.
+@author       Perseus333
+@license      MIT
+==/UserStyle== */
+
+@-moz-document url-prefix("https://play.typeracer.com/") {
+/*Simpler Interface for Typerracer*/
+
+/*General Edits*/
+
+/*Hide Annoying or Unnecessary Elements*/
+
+.createAccountLeaderboardPrompt, /* Typeracer Premium Ad in HomePage*/
+.upgradeButton,/* Typeracer Premium Ad in Profile Stats*/
+#school-edition-promo, /*Shool Edition Ad*/
+.typeracerNotifications, /*Ads in the form of notifications*/
+
+.podContainer.medium.statsView, /* Leaderboard pannel */
+.navigation, /*The navigation in the header*/ 
+.title, /*The name type racer on the top left*/
+.curated-list-wrapper, /*A setting not available to free users*/
+.profilePicContainer, /*The profile picture*/
+#universe-background, /*Main Background*/
+.socialItems, /*Social Media Links*/
+.icon-universes, /*Icon at the title of the suggested universes*/
+
+.newEastWidget, /*Unnecessary blank space before footer*/
+.ag-logo, /*The logo in the footer*/
+.change-theme-button, /*Redundant huge change theme button*/
+.copyright /*The copyright - it isn't illegal to hide is it?*/
+{
+    display: none !important;
+}
+
+
+
+/*Formatting the Website*/
+
+
+/*
+=====================
+=   HEADER / STATS  =
+=====================
+*/
+
+/*All the user stats in one line*/
+.userStats,
+.userStats>div,
+.userHeader,
+table.themeHeader > tbody{
+    flex: none !important;
+}
+
+/*Reduces the tize of the user stats*/
+table.themeHeader > tbody {
+    height: 1.5em;
+}
+
+/*Aligns the stats to the left*/
+.userStats {
+    margin-left: auto !important;
+}
+
+/*Reduces the margins of the userStats to the sides of the screen*/
+table.themeHeader > tbody > tr {
+    flex: 0 1 98%;
+}
+
+/*Removes the colored backgrounds from the stats and settings buttons*/
+.stat,
+.ImageButton{
+    background-color: transparent !important;
+}
+
+
+
+/*
+=================
+=   HOMEPAGE    =
+=================
+*/
+
+
+/*Removes background images*/
+.enterRace,
+.practice,
+.friends {
+    background: none !important;
+}
+
+
+/*Removes a bunch of backgrounds*/
+
+body .podContainer, /*FU parent*/
+body .sidebarBlocks iframe /*FU itself*/,
+body .container .OptionsWrapper /*Race options*/
+{
+    background-color: transparent !important;
+}
+
+/*Edits the buttons to enter the races*/
+.prompt-button {
+    padding: 0.5rem 0.5em;
+    border: none !important;
+}
+
+
+
+/*Improve the "Instant Death" button*/
+
+.off::before,
+.on::after {
+    background-image: none !important;
+    border-radius: 8px;
+}
+
+.off,
+.on{
+    border-radius: 8px;
+    width: 20px;
+    text-indent: 9999px;
+    overflow: hidden;
+}
+
+.off {
+    background-color: var(--surface1) !important;
+}
+
+.on {
+    background-color: var(--red) !important;
+}
+/*End of "Instant Death" section*/
+
+
+
+/*Make race menus go Flex*/
+/*Places the three main types of race horizontally*/
+
+.enterRace {
+    flex: 2;
+}
+
+.practice, .friends {
+    flex: 1 !important;
+}
+
+.enterRace,
+.practice {
+    margin-right: 0.5em !important
+}
+/*End of make things go flex*/
+
+
+
+/*Featured Universes (FU)*/
+/*Edits on the content of this element are
+in the second  section because it is
+hosted in a different url*/
+.sidebarBlocks {
+    margin: auto !important;
+    height: auto !important;
+}
+
+
+/*Colorless links*/
+.gwt-Anchor {
+    color: inherit !important;
+}
+
+
+/*Reduces the padding in the footer*/
+.footer-cont {
+    padding-top: 0.5em !important;
+    padding-bottom: 0 !important;
+}
+
+/*Reduces text size in footer*/
+.footer-menu {
+    font-size: small;
+}
+
+
+
+
+/*
+ ====================
+ =  Race Settings   = 
+ ==================== 
+*/
+
+/*Change this to whatever image you want to change your car*/
+/*Only visible on your end*/
+
+.avatar-self > div:nth-child(2) {
+    background-image: url("https://wallpapers.com/images/hd/squished-cat-face-meme-png-tx4s1bkejcx4firo.jpg") !important;
+    scale: 2;
+}
+
+/*This changes the other's cars*/
+/*Remove the ":not(.avatar-self)" and the statement above to apply it to all cars including yours*/
+
+.avatar:not(.avatar-self) > div:nth-child(2) {
+    background-image: url("https://i.ibb.co/2785hJj/dg7ltec-626871d6-371d-40b0-a86e-2f65dbf8eacb.png") !important;   
+    scale: 1.5;
+} 
+
+/*Removes useless stats after the race (replay)*/
+.TypingLogReplayPlayer > tbody:nth-child(1) > tr:nth-child(n+1):nth-child(-n+7) {
+    display: none !important;
+}
+
+
+
+/*Removes the icon of the text you just typed (after the race)*/
+.textInfoView > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+ display: none !important;
+}
+
+
+/*Simplifying the countdown*/
+.trafficLight, /*Traffic light*/
+.popupContent > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1), /*The space that occupies the traffic light*/
+.lightLabel /*The text besides the countdown*/
+{
+    display: none !important;
+}
+
+
+
+.raceLeaveLink, /*Leave Race Button "Return to main menu"*/
+.raceAgainLink, /*Race again Button*/
+.mainViewport table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" Button*/
+{
+    background-color: transparent !important;
+    border: 1px solid white !important;
+}
+
+/*Images of the Stats (after the race)*/
+.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(1) td:nth-child(1),
+.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(2) td:nth-child(1),
+.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(3) td:nth-child(1),
+.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(4) td:nth-child(1)
+{
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/*Removes the top speeds of that text (after the race)*/
+.textInfoView > tbody:nth-child(1) > tr:nth-child(5),
+.textInfoView > tbody:nth-child(1) > tr:nth-child(6) {
+    display: none !important;
+}
+
+/*Reduces the line height for the stats after the text to make it more compact*/
+.mainViewport table.textInfoView > tbody > tr .tblOwnStats tr > td:nth-child(1) {
+    line-height: initial !important;
+}
+
+
+
+
+
+
+
+/*
+ ==================
+ =   Recoloring   =
+ ==================
+*/
+
+
+/*Catppucin Mocha Color Scheme*/
+:root {
+    --crust:    #11111b;
+    --base:     #1e1e2e;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --subtext0: #a6adc8;
+    --subtext1: #bac2de;
+    --text:     #cdd6f4;
+    --red:      #f38ba8;
+}
+
+
+/*Everforest Dark Color Scheme*/
+/*
+:root {
+    --crust:    #1e2326;
+    --base:     #272e33;
+    --surface0: #2e383c;
+    --surface1: #374145;
+    --surface2: #414b50;
+    --subtext0: #dbbc7f;
+    --subtext1: #a7c080;
+    --text:     #d3c6aa;
+    --red:      #e67e80;
+}
+*/
+
+/*Feel free to use whichever color palette you want */
+/*Color palettes to add: Gruvbox and dracula */
+
+/*Sets the color of most text*/
+.textInfoAuthor,
+.textInfoContributor,
+a,
+.mainViewport table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr,
+h1,
+h2,
+h3,
+h4
+{
+    color: var(--text) !important;
+}
+
+/*Sets the color of the footer*/
+body.redesigndark .footer-cont {
+    background-color: var(--crust) !important;
+}
+
+/*Sets the color of the button to enter the races*/
+.prompt-button {
+    background-color: var(--surface1) !important;
+}
+
+/*Sets the general background color*/
+body .flex-wrapper {
+    background-color: var(--base) !important;
+}
+
+/*Sets the header color*/
+body .container .themeHeader {
+    background-color: var(--crust) !important;
+}
+
+/*Sets the color of the input container background at the race*/
+body .mainViewport table.inputPanel .txtInput {
+    background-color: var(--surface1) !important;
+}
+
+/*Sets the color of the text container background at the race*/
+body .mainViewport table.inputPanel {
+    background-color: var(--crust) !important;
+
+
+
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/featured_universes_sidebar") {
+/*
+=====================================
+=    Editing the Featured Universes =
+=====================================
+*/
+
+/*Removes the arrows to navigate
+across the feat. races because they 
+are all in the same page*/
+#sidebarBlocks-prev,
+#sidebarBlocks-next {
+    display: none !important;
+}
+
+/*Removes the icons*/
+.icon-universes, /*icon next to title*/
+.sidebarBlock__title::before /*Race icon*/
+{
+    display: none !important;
+}
+
+/*The background image of each feature race*/
+.sidebarBlock__background {
+    display: none !important;
+}
+
+.sidebarBlock__content {
+    border-radius: 8px;
+    background-color: transparent !important;
+    border: 1px solid;
+    border-color: #ffffff24 !important;
+}
+
+/*The container of the races*/
+#sidebarBlocks-container {
+    flex-wrap: wrap !important;
+    height: 300px !important;
+    width: 98%;
+    margin-left: 0px;
+}
+
+/*Each of the featured races*/
+.sidebarBlock {
+    display: flex !important;
+    margin-bottom: 1em;
+}
+
+
+
+}
