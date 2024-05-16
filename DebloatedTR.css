@@ -1,4 +1,6 @@
-@-moz-document url-prefix("https://play.typeracer.com/") {
+@-moz-document url-prefix("https://play.typeracer.com"), url-prefix("https://data.typeracer.com") {
+/*Racing (play.typeracer.com)*/
+
 /*Simpler Interface for Typerracer*/
 
 
@@ -10,6 +12,12 @@
 .upgradeButton,/* Typeracer Premium Ad in Profile Stats*/
 #school-edition-promo, /*Shool Edition Ad*/
 .typeracerNotifications, /*Ads in the form of notifications*/
+.carSelectorExplained, /*Premium reference in account settings*/
+.upgradePremiumCar, /*Premium ad prompt in account settings*/
+.chooseCarAdIncentive, /*Incentive to watch Ad in account settings*/
+.navUpgrade, /*Ad webpage in data.typeracer.com*/
+.typingStats-banner, /*Typing Stats Ad*/
+.a[src="pit/upgrade_account"], /*Upgrade button in footer*/
 
 .podContainer.medium.statsView, /* Leaderboard pannel */
 .navigation, /*The navigation in the header*/ 
@@ -23,7 +31,8 @@
 .newEastWidget, /*Unnecessary blank space before footer*/
 .ag-logo, /*The logo in the footer*/
 .change-theme-button, /*Redundant huge change theme button*/
-.copyright /*The copyright - it isn't illegal to hide it, is it?*/
+.copyright, /*The copyright - it isn't illegal to hide it, is it?*/
+.footer-share /*Sharing button in data.typeracer.com*/
 {
     display: none !important;
 }
@@ -95,6 +104,12 @@ body .container .OptionsWrapper /*Race options*/
 {
     background-color: transparent !important;
 }
+
+/*Main containers in home page*/
+.podContainer {
+    border: none !important;
+}
+
 
 /*Edits the buttons to enter the races*/
 .prompt-button {
@@ -170,6 +185,11 @@ hosted in a different url*/
     font-size: small;
 }
 
+/*Footer elements border*/
+.footer-cont .footer-wrapper .footer-menu ul li a {
+    border: none !important;
+}
+
 
 
 
@@ -243,7 +263,7 @@ table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" But
     border: none !important;
 }
 
-
+/*Increases the line separation in the text prompt (not the input) of the race*/
 table.inputPanel.smoothCaretInputBox tbody tr td table tbody tr td div div {
     line-height: 1.2 !important;
 }
@@ -285,6 +305,7 @@ table.TypingLogReplayPlayer > tbody > tr .statusIndicator
     border: none !important;
 }
 
+/*Makes the live speed and accuracy element in typing review closer and not so far apart*/
 .TypingLogReplayPlayer > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) {
 display: flex;
 }
@@ -313,8 +334,8 @@ table.TypingLogReplayPlayer > tbody > tr:nth-child(4) table tbody tr {
     width: 100px !important;
 }
 
+/*Reduces unnecessary blank space before Speed Graph*/
 table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td {
-    /*border-radius: 0px !important;*/
     margin-top: 0px !important;
 }
 
@@ -322,6 +343,106 @@ table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td {
 .IncrementSpeedChart>div>div>div>svg:hover {
     scale: 1.7;
 }
+
+
+
+
+/*
+=========================
+= Changing account info = 
+=========================
+*/
+
+.chooseCar .chooseCarBanner {
+    background: none !important;
+}
+
+
+/*Choosing cars from seasons*/
+
+/*The tabs to browse cars by type/season*/
+/*Rounds only the corners in the edges*/
+.chooseCarTabs div:first-child{
+    border-radius: 6px 0px 0px 6px !important;
+}
+
+.chooseCarTabs div:last-child{
+    border-radius: 0px 6px 6px 0px !important;
+}
+
+.chooseCarTabs div:not(:first-child):not(:last-child){
+    border-radius: 0px !important;
+}
+
+/*Removes all premium cars*/
+.singleCar:has(>label div span) {
+    display: none !important;
+}
+
+/*Selecting the cars*/
+#chooseCarSelection .singleCar .singleCarInner:hover {
+    box-shadow: none !important;
+}
+
+/*Modifying the account*/
+body.redesigndark .DialogBox .signUpForm .sectionHeaderRow {
+    border: none !important;
+}
+
+/*Delete Account link*/
+.gwt-Anchor[href="https://data.typeracer.com/pit/delete_account"] {
+    font-weight: bold !important;
+}
+
+
+
+/*
+=====================================
+=    Editing the Featured Universes =
+=====================================
+*/
+
+/*Removes the arrows to navigate
+across the feat. races because they 
+are all in the same page*/
+#sidebarBlocks-prev,
+#sidebarBlocks-next {
+    display: none !important;
+}
+
+/*Removes the icons*/
+.icon-universes, /*icon next to title*/
+.sidebarBlock__title::before /*Race icon*/
+{
+    display: none !important;
+}
+
+/*The background image of each feature race*/
+.sidebarBlock__background {
+    display: none !important;
+}
+
+/*Each of the entries in the featured universes*/
+.sidebarBlock__content {
+    border-radius: 8px;
+    border: none !important;
+}
+
+/*The container of the races*/
+#sidebarBlocks-container {
+    flex-wrap: wrap !important;
+    height: 300px !important;
+    width: 98%;
+    margin-left: 0px;
+}
+
+/*Each of the featured races*/
+.sidebarBlock {
+    display: flex !important;
+    margin-bottom: 1em;
+}
+
+
 
 
 
@@ -335,6 +456,7 @@ table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td {
 
 
 /*Catppucin Mocha Color Scheme*/
+
 :root {
     --crust:    #11111b;
     --mantle:   #181825;
@@ -348,6 +470,9 @@ table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td {
     --text:     #cdd6f4;
     --red:      #f38ba8;
     --green:    #a6e3a1;
+    --header2:  #cba6f7;
+    --header3:  #89dceb;
+    --accent:   #f2cdcd;
 }
 
 
@@ -359,14 +484,14 @@ table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td {
     --surface0: #2e383c;
     --surface1: #374145;
     --surface2: #414b50;
-    --overlay1: #475258;
+    --overlay1: #7A8478;
     --subtext0: #dbbc7f;
     --subtext1: #a7c080;
     --text:     #d3c6aa;
     --red:      #e67e80;
     --green:    #83c092;
 }
-*/
+
 
 /*Feel free to use whichever color palette you want */
 /*Color palettes to add: Gruvbox and dracula */
@@ -409,18 +534,18 @@ div.TypingDisplaySection
 
 /*Sets the color of the button to enter the races*/
 .prompt-button {
-    background-color: var(--surface0) !important;
+    background-color: var(--surface1) !important;
 }
 
 /*Sets the general background color*/
 body .flex-wrapper {
-    background-color: var(--mantle) !important;
+    background-color: var(--base) !important;
 }
 
 /*The main container for the site, 
 smaller than general background*/
 .podContainer {
-    background-color: var(--base) !important;
+    background-color: var(--surface0) !important;
 }
 
 /*Sets the header color*/
@@ -428,10 +553,10 @@ body .container .themeHeader {
     background-color: var(--crust) !important;
 }
 
+/*Instant Death buttons*/
 .off {
     background-color: var(--surface0) !important;
 }
-
 .on {
     background-color: var(--red) !important;
 }
@@ -454,7 +579,7 @@ table.inputPanel {
 
 /*The countdown container before the race*/
 .countdownPopup {
-    background-color: var(--crust) !important;
+    background-color: var(--base) !important;
 }
 
 /*Usernames of "dead" participants in the race*/
@@ -467,29 +592,23 @@ table.inputPanel {
 .raceAgainLink, /*Race again Button*/
 table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" Button*/
 {
-    background-color: var(--surface0) !important;
+    background-color: var(--surface1) !important;
 }
 
 /*Headers of the stats after race*/
 table.textInfoView > tbody > tr:nth-child(1) td, /*Quick info, speed, etc. header*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td, /*Analysis (replay)*/
 table.textInfoView > tbody > tr:nth-child(3) td /*Typing review header*/
 {
-    background-color: var(--surface0) !important;
+    background-color: var(--surface1) !important;
 }
 
-/*Main contrainers for all stats after race*/
+/*Main contrainers for all stats after race and typing review main containers*/
 table.textInfoView > tbody > tr:nth-child(2) > td, /*Author, quick info, speed, etc.*/
-table.TypingLogReplayPlayer > tbody > tr:nth-child(8) > td, /*Analysis (replay)*/
-table.TypingLogReplayPlayer > tbody > tr:nth-child(9) > td /*Speed graph + mistakes*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(9) > td, /*Speed graph + mistakes*/
+table.TypingLogReplayPlayer > tbody > tr:nth-child(-n+7) > td /*Typing replay*/
 {
-    background-color: var(--mantle) !important;
-}
-
-/*Typing review main containers*/
-table.TypingLogReplayPlayer > tbody > tr:nth-child(-n+7) > td,
-table.TypingLogReplayPlayer > tbody > tr:nth-child(9) > td
-{
-    background-color: var(--mantle) !important;
+    background-color: var(--base) !important;
     color: var(--text) !important;
 }
 
@@ -541,56 +660,176 @@ div.TypingDisplaySection {
     background-color: var(--surface1) !important;
 }
 
+/*Choosing cars from seasons*/
+.chooseCarTabs>div:not(.activeSeasonTab) {
+    background-color: var(--surface1) !important;
+}
+
+.chooseCarTabs>div.activeSeasonTab {
+    background-color: var(--surface2) !important;
+}
+
+/*Default background of the cars*/
+#chooseCarSelection .singleCar .singleCarInner {
+    background-color: transparent !important;
+}
+
+#chooseCarSelection .singleCar .singleCarInner:hover {
+    background-color: var(--surface1) !important;
+}
+
+
+/*Delete account button*/
+td:has(>.gwt-Anchor[href="https://data.typeracer.com/pit/delete_account"]) {
+    color: var(--red) !important;
+}
+
+/*Featured universes containers*/
+.sidebarBlock__content {
+    background-color: var(--surface1) !important;
+}
+
+
 
 
 
 }
 
-@-moz-document url-prefix("https://data.typeracer.com/pit/featured_universes_sidebar") {
+@-moz-document url-prefix("https://data.typeracer.com") {
+/*Pit Stop (data.typeracer.com)*/
+
+
+/*Removes the main background*/
+#pitstop-background {
+    display: none !important;
+}
+
+
+/*Hides the default profile images*/
+img[src="/public/images/silhouette.svg"] {
+    visibility: hidden !important;
+}
+
+/*Replaces the default profile images with a custom one*/
+*:has(>img[src="/public/images/silhouette.svg"]) {
+    /*Change this link*/
+    background-image: url("https://i.ibb.co/HKtpWkj/image.png") !important;
+    background-size: 112px;
+    background-position-x: -10px;
+    border-radius: 110px;
+    height: 110px;
+    width: 110px;
+}
+
+/*Hides the profile pictures from "Who's Here"*/
+.userList__item__image {
+    display: none !important;
+}
+
+/*Navigation arrows (in general)*/
+.prev,
+.next {
+    background: none !important;
+}
+
+
 /*
-=====================================
-=    Editing the Featured Universes =
-=====================================
+========
+= HOME =
+========
 */
 
-/*Removes the arrows to navigate
-across the feat. races because they 
-are all in the same page*/
-#sidebarBlocks-prev,
-#sidebarBlocks-next {
+/*Header and decorative images*/
+.pitStop__image,
+.sectionHeading__image{
     display: none !important;
 }
 
-/*Removes the icons*/
-.icon-universes, /*icon next to title*/
-.sidebarBlock__title::before /*Race icon*/
+/*Profile picture of the section "Who's Racing"*/
+.profilePic {
+    display: none !important;
+}
+
+/*Removes blank space at "Who's Racing"*/
+.userList {
+    margin: 0 !important;
+}
+
+/* I hope you're having a nice day! :D */
+
+/*Removes unnecessary blank space between the headers*/
+.sectionHeading {
+    padding: 0px !important;
+}
+
+/*Makes the "Who's Here" show more images*/
+#tns1-mw {
+  width: 1000px !important;
+}
+
+/*Removes some borders*/
+.whosHere, /*"Who's Here" container*/
+.sectionHeading /*Headings of the sections*/
 {
-    display: none !important;
-}
-
-/*The background image of each feature race*/
-.sidebarBlock__background {
-    display: none !important;
-}
-
-.sidebarBlock__content {
-    border-radius: 8px;
     border: none !important;
+    padding: 0 !important;
 }
 
-/*The container of the races*/
-#sidebarBlocks-container {
-    flex-wrap: wrap !important;
-    height: 300px !important;
-    width: 98%;
-    margin-left: 0px;
+
+/*Navigation arrows in "Who's Here"*/
+.whosHere > div> .sectionHeading__actions {
+    display: none !important;
 }
 
-/*Each of the featured races*/
-.sidebarBlock {
-    display: flex !important;
-    margin-bottom: 1em;
+/*Modifies the "Who's Here container"*/
+#tns1 {
+    transform: none !important; /*To fix it to its parent container*/
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
 }
+
+/*"Who's Here" users*/
+#tns1 > .tns-item {
+  width: auto; 
+}
+
+/*Removes all the duplicate entries in "Who's here"*/
+.tns-item:not([id^=tns1]) {
+    display: none !important;
+}
+
+
+/*Makes the "Who's Here" and "Who's Racing" equal width*/
+.userList, 
+.whosRacing{
+  max-width: 1000px;
+}
+
+/*
+WH: Who's Here
+WR: Who's Racing
+*/
+
+/*Pitstop section description and the headers of "WH" and "WR"*/
+/*(for better alignment)*/
+.sectionHeading__title,
+.pitStop__content {
+  margin-left: 10px;
+}
+
+/*The current WH Users container*/
+.userList {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/*Redundant description of "WR"*/
+.sectionHeading__title>span {
+    display: none !important;
+}
+
+
 
 /*
  ==================
@@ -598,44 +837,67 @@ are all in the same page*/
  ==================
 */
 
+/*Makes the links colorful!*/
+.main a:not(p>a) {
+    color: var(--accent) !important;
+}
 
-/*Catppucin Mocha Color Scheme*/
-:root {
-    --crust:    #11111b;
-    --mantle:   #181825;
-    --base:     #1e1e2e;
-    --surface0: #313244;
-    --surface1: #45475a;
-    --surface2: #585b70;
-    --subtext0: #a6adc8;
-    --subtext1: #bac2de;
-    --text:     #cdd6f4;
-    --red:      #f38ba8;
+/*For better emphasis on headers, h2 = each page main title*/
+h2 {
+    color: var(--header2) !important;
 }
 
 
-/*Everforest Dark Color Scheme*/
-/*
-:root {
-    --crust:    #1e2326;
-    --base:     #272e33;
-    --surface0: #2e383c;
-    --surface1: #374145;
-    --surface2: #414b50;
-    --subtext0: #dbbc7f;
-    --subtext1: #a7c080;
-    --text:     #d3c6aa;
-    --red:      #e67e80;
-}
-*/
-
-/*Feel free to use whichever color palette you want */
-/*Color palettes to add: Gruvbox and dracula */
-
-
-.sidebarBlock__content {
-    background-color: var(--surface1) !important;
+/*Navigation header*/
+div,
+span
+{
+    color: var(--text) !important;
 }
 
+/*Paragraph text*/
+p {
+    color: var(--subtext1) !important;
+}
+
+/*The sub-header for navigation*/
+.headerSubmenu {
+    background-color: var(--crust) !important;
+}
+
+/*Active tab in navigation header*/
+.headerSubmenu .navLinks a.active {
+    background-color: var(--base) !important;
+}
+
+/*Hovered tab in navigation header*/
+.headerSubmenu .navLinks a:hover {
+    background-color: var(--mantle) !important;
+}
+
+/*Background of "Who's Here"*/
+.whosHere {
+    background-color: transparent !important;
+}
+
+/*Main background*/
+.main {
+    background-color: var(--base) !important;
+}
+
+/*Most "basic" (lower) background*/
+.container {
+    background-color: var(--base) !important;
+}
+
+/*Background of the "Who's Here container"*/
+.userList {
+    background-color: var(--surface0) !important;
+}
+
+/*Background of the entries in "Who's Racing"*/
+.latestGameResults>li {
+    background-color: var(--surface0) !important;
+}
 
 }
