@@ -1,26 +1,36 @@
 @-moz-document url-prefix("https://play.typeracer.com"), url-prefix("https://data.typeracer.com") {
 /*Racing (play.typeracer.com)*/
 
-/*Simpler Interface for Typerracer*/
+/*Simpler Interface for TypeRacer*/
 
 
 /*General Edits*/
 
 /*Hide Annoying or Unnecessary Elements*/
 
+div[class^="new"], /* (new<cardinalDirection>Widget) 
+Ad Containers in all pages, also centers most pages*/
+.northWidget, /*More ad Containers*/
+.southWidget,
+.eastWidget,
+.westWidget,
 .createAccountLeaderboardPrompt, /* Typeracer Premium Ad in HomePage*/
+#subscribeLinkNav, /*Ad in the navigation*/
 .upgradeButton,/* Typeracer Premium Ad in Profile Stats*/
 #school-edition-promo, /*Shool Edition Ad*/
 .typeracerNotifications, /*Ads in the form of notifications*/
 .carSelectorExplained, /*Premium reference in account settings*/
 .upgradePremiumCar, /*Premium ad prompt in account settings*/
+.singleCar:has(>label div span), /*Premium cars in account settings*/
 .chooseCarAdIncentive, /*Incentive to watch Ad in account settings*/
 .navUpgrade, /*Ad webpage in data.typeracer.com*/
+.adsBottom, /*Ads in the footer of the pitstop home*/
 .typingStats-banner, /*Typing Stats Ad*/
 .a[src="pit/upgrade_account"], /*Upgrade button in footer*/
+.Plan__Basic, /*Upgrade to premium Ad in profile*/
+.carSelectorPremiumExplained, /*"explanation" premium Ad for locked cars*/
 
 .podContainer.medium.statsView, /* Leaderboard pannel */
-.navigation, /*The navigation in the header*/ 
 .title, /*The name type racer on the top left*/
 .curated-list-wrapper, /*A setting not available to free users*/
 .profilePicContainer, /*The profile picture*/
@@ -28,7 +38,6 @@
 .socialItems, /*Social Media Links*/
 .icon-universes, /*Icon at the title of the suggested universes*/
 
-.newEastWidget, /*Unnecessary blank space before footer*/
 .ag-logo, /*The logo in the footer*/
 .change-theme-button, /*Redundant huge change theme button*/
 .copyright, /*The copyright - it isn't illegal to hide it, is it?*/
@@ -81,13 +90,41 @@ table.themeHeader > tbody > tr {
 }
 
 
+/*Removes some elements in the navigation header (top header)*/
+.navigation>div>.blogLink, /*Updates*/
+.navigation>div>#groupLink, /*Discord, also available in footer in "Contribute"*/
+.navigation>div>a:nth-child(4), /*About*/
+.navigation>div>.merchLink, /*Merch*/
+
+a[target="tr_blog"], /*Updates in pitstop*/
+a[target="tr_forum"] /*Discord in pitstop*/
+{
+    display: none !important;
+}
+
+/*Adjusts the Race button (and others if not removed) to be at the
+same height as the header*/
+.navigation {
+    margin-top: -4px !important;
+}
+
+
+/*Reduces the width of the Navigation Header*/
+table.themeHeader > tbody > tr > td.navigation > div,
+table.themeHeader > tbody > tr > td.navigation {
+    width: fit-content !important;
+    flex: none !important;
+}
+table.themeHeader > tbody > tr > td.navigation > div a {
+    margin-right: 1.5em !important;
+}
+
 
 /*
 =================
 =   HOMEPAGE    =
 =================
 */
-
 
 /*Removes background images*/
 .enterRace,
@@ -98,12 +135,18 @@ table.themeHeader > tbody > tr {
 
 
 /*Removes a bunch of backgrounds*/
-
 body .sidebarBlocks iframe /*FU itself*/,
 body .container .OptionsWrapper /*Race options*/
 {
     background-color: transparent !important;
 }
+
+
+/* Removes a blank space that offsets all the contents in the homepage"*/
+.view > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(3) {
+  display: none !important;
+}
+
 
 /*Main containers in home page*/
 .podContainer {
@@ -117,7 +160,9 @@ body .container .OptionsWrapper /*Race options*/
     border: none !important;
 }
 
-
+.mainMenu .OptionsWidget {
+    width: 100% !important;
+}
 
 /*Improve the "Instant Death" button*/
 
@@ -142,31 +187,75 @@ body .container .OptionsWrapper /*Race options*/
 /*Make race menus go Flex*/
 /*Places the three main types of race horizontally*/
 
-.enterRace {
-    flex: 2;
+/*RESPONSIVE DESIGN BABYYYYY!!!*/
+/*For low zoom level*/
+@media (min-width: 801px) {
+    .enterRace {
+        flex: none !important;
+    }
+
+    .practice, .friends {
+        flex: 1 1 !important;
+    }
 }
 
-.practice, .friends {
-    flex: 1 !important;
+/*For high zoom level*/
+@media (min-width: 1000px) and (max-width: 1300px) {
+    .enterRace {
+        flex: 2 !important;
+    }
+
+    .practice, .friends {
+        flex: 1 !important;
+    } 
 }
+
+
+
+
 
 .enterRace,
 .practice {
-    margin-right: 0.5em !important
+    margin-right: 1em !important
 }
 /*End of make things go flex*/
 
 
 
-/*Featured Universes (FU)*/
-/*Edits on the content of this element are
-in the second  section because it is
-hosted in a different url*/
+
+
+/*
+======================
+= Featured Universes =
+======================
+*/
+
 .sidebarBlocks {
     margin: auto !important;
     height: auto !important;
 }
 
+
+.sidebarIframe {
+    min-height: 370px !important;
+}
+
+
+/*
+==========
+= Footer =
+==========
+*/
+
+.footer-menu {
+    max-width: fit-content !important;
+    flex: 0 0 100% !important;
+}
+
+/*Centers the footer elments*/
+.footer-cont .footer-wrapper {
+    flex: none !important;
+}
 
 /*Colorless links*/
 .gwt-Anchor {
@@ -193,7 +282,11 @@ hosted in a different url*/
 
 
 
-/*POP-UP Settings (Create Account/Sign In)*/
+/*
+============================================
+= POP-UP Settings (Create Account/Sign In) = 
+============================================
+*/
 
 /*The closing button for the pop-up*/
 .xButton {
@@ -204,6 +297,38 @@ hosted in a different url*/
 /*Icon besides the header of the pop-up*/
 .CaptionWithIcon>img {
     display: none !important;
+}
+
+/*
+==================
+= Loading Screen =
+==================
+*/
+
+
+/*Hides text*/
+
+#gwtLoadingText,
+#gwtLoadingMessage>div>img{
+  display: none !important;
+}
+
+
+
+/*Loading Image*/
+#gwtLoadingMessage {
+    background-image: url("https://i.postimg.cc/MHzh3KT9/reload-cat.gif");
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto !important;
+    width: 50vh !important;
+    height: 50vh !important;
+    background-origin: content-box;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 
@@ -230,11 +355,6 @@ hosted in a different url*/
     background-image: url("https://i.ibb.co/2785hJj/dg7ltec-626871d6-371d-40b0-a86e-2f65dbf8eacb.png") !important;   
     scale: 1.5;
 } 
-
-/*Removes the icon of the text you just typed (after the race)*/
-.textInfoView > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
- display: none !important;
-}
 
 
 /*Simplifying the countdown*/
@@ -263,11 +383,24 @@ table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr /*"Try again?" But
     border: none !important;
 }
 
+
+
 /*Increases the line separation in the text prompt (not the input) of the race*/
 table.inputPanel.smoothCaretInputBox tbody tr td table tbody tr td div div {
     line-height: 1.2 !important;
 }
 
+
+/*Pop-ups that might appear when playing as a Guest*/
+
+.helpPopup, /*Explanation on how to play at the top of the screen*/
+.DemoteSkillLevelPopup, /*Dialog that appears when not completing a race*/
+.imgHelp, /*Help Button below the text*/
+.arrowPopup-start, /*Arrows to indicate where to type*/
+.arrowPopup-end 
+{
+    display: none !important;
+}
 
 
 /*
@@ -275,6 +408,11 @@ table.inputPanel.smoothCaretInputBox tbody tr td table tbody tr td div div {
 = AFTER RACE =
 ==============
 */
+
+/*Removes the icon of the text you just typed (after the race)*/
+.textInfoView > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+ display: none !important;
+}
 
 /*Images of the Stats (after the race)*/
 table.textInfoView > tbody > tr .tblOwnStats tr:nth-child(1) td:nth-child(1),
@@ -447,7 +585,6 @@ are all in the same page*/
 
 
 
-
 /*
  ==================
  =   Recoloring   =
@@ -464,15 +601,25 @@ are all in the same page*/
     --surface0: #313244;
     --surface1: #45475a;
     --surface2: #585b70;
+    --overlay0: #6c7086;
     --overlay1: #7f849c;
+    --overlay2: #9399b2;
     --subtext0: #a6adc8;
     --subtext1: #bac2de;
     --text:     #cdd6f4;
+    --pink:     #f5c2e7;
+    --mauve:    #cba6f7;
     --red:      #f38ba8;
+    --peach:    #fab387;
+    --yellow:   #f9e2af;
     --green:    #a6e3a1;
-    --header2:  #cba6f7;
-    --header3:  #89dceb;
-    --accent:   #f2cdcd;
+    --teal:     #94e2d5;
+    --sky:      #89dceb;
+    --saphire:  #74c7ec;
+    --blue:     #89b4fa;
+    --lavender: #b4befe;
+    
+
 }
 
 
@@ -502,10 +649,11 @@ body,
 .textInfoContributor,
 a,
 table.textInfoView > tbody > tr .ScoreMenuButton > tbody > tr,
-h1,
 h2,
 h3,
 h4,
+.OptionsWidget, /*Options for the race (homepage)*/
+.OptionsWidget>ul>li>span>span, /*Options for the race (homepage)*/
 
 .userInfo, /*User stats*/
 .gameView .gameStatusLabel, /*Status of the race*/
@@ -526,6 +674,20 @@ div.TypingDisplaySection
     color: var(--text) !important;
 }
 
+/*Main Header color (usually typeRacer title*/
+h1 {
+    color: var(--mauve) !important;
+}
+
+/*Popup when right-clicking a profile*/
+.UserInfoContextMenu,
+.UserInfoContextMenu .gwt-MenuBar{
+    background-color: var(--mantle) !important;
+}
+
+.gwt-MenuItem-selected {
+    background-color: var(--base) !important;
+}
 
 /*Sets the color of the footer*/
 .footer-cont {
@@ -546,6 +708,10 @@ body .flex-wrapper {
 smaller than general background*/
 .podContainer {
     background-color: var(--surface0) !important;
+}
+
+.podContainer .medium {
+    padding: 1em !important;
 }
 
 /*Sets the header color*/
@@ -696,8 +862,49 @@ td:has(>.gwt-Anchor[href="https://data.typeracer.com/pit/delete_account"]) {
 }
 
 @-moz-document url-prefix("https://data.typeracer.com") {
-/*Pit Stop (data.typeracer.com)*/
+/*General (data.typeracer.com)*/
 
+/*
+==========
+= HEADER =
+==========
+*/
+
+/*Merges the subheader (navigation for pitstop) with the main header*/
+.headerSubmenu {
+    position: absolute !important;
+    margin-top: 0px !important;
+    left: 0; 
+    right: 0;
+    margin-left: auto !important; 
+    margin-right: auto !important;
+    max-width: fit-content !important;
+    box-shadow: none !important;
+    max-height: 2em;
+    width: fit-content !important;
+}
+
+.headerSubmenu .navLinks {
+    margin: 0 !important;
+    width: fit-content !important;
+}
+
+/*Makes the Subheader the same height as the top header*/
+.headerSubmenu>.navLinks {
+    height: calc(1.5em + 5px) !important;
+}
+
+/*Makes the top header a little taller to better fit the contents of the */
+.themeHeader>tbody {
+    margin-top: 5px;
+}
+
+
+/*
+================
+= Body Content =
+================
+*/
 
 /*Removes the main background*/
 #pitstop-background {
@@ -714,17 +921,10 @@ img[src="/public/images/silhouette.svg"] {
 *:has(>img[src="/public/images/silhouette.svg"]) {
     /*Change this link*/
     background-image: url("https://i.ibb.co/HKtpWkj/image.png") !important;
-    background-size: 112px;
-    background-position-x: -10px;
-    border-radius: 110px;
-    height: 110px;
-    width: 110px;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
 }
 
-/*Hides the profile pictures from "Who's Here"*/
-.userList__item__image {
-    display: none !important;
-}
 
 /*Navigation arrows (in general)*/
 .prev,
@@ -734,10 +934,435 @@ img[src="/public/images/silhouette.svg"] {
 
 
 /*
+==========
+= TABLES =
+==========
+*/
+
+/*The borders of the table*/
+.Scores__Table__Row div,
+.Scores__Table__Header div,
+section.Section__Card:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+{
+    border: 1px solid !important;
+}
+
+/*The search button in the header*/
+.login .loginform input[type="submit"],
+.pit form input[type="submit"],
+.pit form button {
+    border: none !important;
+}
+
+td.profilePic a {
+    display: block !important;
+}
+
+/*
+====================
+= REPORT & MESSAGE =
+====================
+*/
+
+/*Details of the report*/
+textarea {
+    border: none !important;
+    border-radius: 1em;
+    padding: 1em !important;
+}
+
+
+
+
+
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*Rainbow navigation colors between menus (header)*/
+.navLinks a:nth-child(1) {
+    color: var(--pink) !important;
+}
+.navLinks a:nth-child(2) {
+    color: var(--mauve) !important;
+}
+.navLinks a:nth-child(3) {
+    color: var(--red) !important;
+}
+.navLinks a:nth-child(4) {
+    color: var(--peach) !important;
+}
+.navLinks a:nth-child(5) {
+    color: var(--yellow) !important;
+}
+.navLinks a:nth-child(6) {
+    color: var(--green) !important;
+}
+.navLinks a:nth-child(7) {
+    color: var(--teal) !important;
+}
+.navLinks a:nth-child(8) {
+    color: var(--sky) !important;
+}
+
+/*Makes the links colorful!*/
+.main a:not(.prompt-button) {
+    color: var(--pink) !important;
+}
+
+/*For better emphasis on headers, h2 = each page main title*/
+h2 {
+    color: var(--mauve) !important;
+}
+
+
+/*Navigation header*/
+div,
+span
+{
+    color: var(--text) !important;
+}
+
+/*Paragraph text*/
+p {
+    color: var(--subtext1) !important;
+}
+
+/*The sub-header for navigation*/
+.headerSubmenu {
+    background-color: transparent !important;
+}
+
+/*Active tab in navigation header*/
+.headerSubmenu .navLinks a.active,
+.headerSubmenu .navLinks > a:focus,
+.headerSubmenu .navLinks > a:hover{
+    background-color: var(--base) !important;
+}
+
+/*Hovered tab in navigation header*/
+.headerSubmenu .navLinks a:hover {
+    background-color: var(--mantle) !important;
+}
+
+
+/*The search button in the header*/
+.login .loginform input[type="submit"],
+input[type="submit"],
+.pit form button {
+    border: none !important;
+    background-color: var(--surface2) !important;
+}
+
+/*Inputs and selections*/
+input[type="text"],
+select {
+    border: none !important;
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+    background-image: none !important;
+}
+
+/*The search button in the header when hovered*/
+.login .loginform input[type="submit"]:hover,
+.pit form input[type="submit"]:hover,
+.pit form button:hover
+{
+    background-color: var(--surface1) !important;
+}
+
+
+/*Main background*/
+.main {
+    background-color: var(--base) !important;
+}
+
+/*Most "basic" (lower) background*/
+.container {
+    background-color: var(--base) !important;
+}
+
+/*
+==========
+= TABLES =
+==========
+*/
+
+/*The first line of selectors is for "/pit/race_history"
+and the second one is for "/pit/competitions"*/
+
+/*The header of the table*/
+.Scores__Table__Header,
+.scoresTable>tbody>tr:nth-child(1){
+    background-color: var(--surface0) !important;
+}
+
+/*The first column of the elements of the table*/
+.Scores__Table__Row div:first-child,
+.scoresTable>tbody>tr>td:nth-child(1){
+    background-color: var(--surface2) !important;
+}
+
+/*Colors of the regular cells*/
+.Scores__Table__Row div,
+section.Section__Card:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+{
+    background-color: var(--surface1) !important;
+}
+
+/*Borders of the table*/
+.Scores__Table__Row div, .Scores__Table__Header div,
+section.Section__Card:nth-child(2) > div:nth-child(2) > div:nth-child(1)
+{
+    border-color: var(--overlay0) !important;
+}
+
+/*Regular cells*/
+.friendsTable tr td,
+.scoresTable tr td,
+.cellTable:not(.queryTable) tr td {
+  background-color: var(--surface0) !important;
+  border-color: var(--overlay0) !important;
+}
+
+
+/*Header of the table*/
+.friendsTable tr th,
+.scoresTable tr th,
+.cellTable:not(.queryTable) tr th {
+  background-color: var(--mantle) !important;
+  border-color: var(--overlay0) !important;
+}
+
+/*Text in the first column*/
+.Scores__Table__Row div:first-child,
+.scoresTable > tbody > tr > td:nth-child(1) {
+  color: var(--text) !important;
+}
+
+
+
+/*
+====================
+= REPORT & MESSAGE =
+====================
+*/
+
+/*Details of the report*/
+textarea {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+}
+
+
+
+
+
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/profile"), url-prefix("https://data.typeracer.com/pit/login") {
+/*Login (/pit/profile | login)*/
+
+/*Centers the login container*/
+.loginform {
+    margin: auto !important;
+}
+
+
+/*Hides redundant text in login
+"Please sign in with your TypeRacer account."*/
+.themeContent>p {
+    display: none;
+}
+
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*All text that isn't a link*/
+td,
+input {
+    color: var(--text) !important;
+}
+
+/*The login container*/
+.loginform {
+    background-color: var(--surface0) !important;
+}
+
+/*The login input forms*/
+.themeContent.login .loginform input[type="text"],
+.themeContent.login .loginform input[type="password"],
+.themeContent.pit form input[type="text"] {
+    color: var(--text) !important;
+    background-color: var(--crust) !important;
+    border: none !important;
+}
+
+/*"Submit" Button"*/
+.login .loginform input[type="submit"] {
+    border: none !important;
+    background-color: var(--surface1) !important;
+}
+
+.login .loginform input[type="submit"]:hover {
+    background-color: var(--surface2) !important;
+}
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/signup") {
+/*Sign Up (/pit/signup)*/
+
+
+/*Hierarchy: main>themecontent>section>loginform*/
+
+/*It allows to flex better ig*/
+.main {
+    flex: 0 0 auto !important;
+}
+
+/*To remove unnecessary blank space*/
+.themeContent {
+    max-width: fit-content;
+}
+
+/*Sub container of main*/
+.section.section--boxed {
+    border: none !important;
+    display: flex !important;
+    align-content: center !important;
+    border-radius: 10px !important;
+}
+
+/*The login form container*/
+.loginform {
+    flex: 1 auto;
+    align-content: center;
+}
+
+
+/*Makes the passwords inputs the same as the other inputs*/
+#password,
+#confirm_password {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 0.5em !important;
+    outline: none !important;
+    border-radius: 5px !important;
+    box-sizing: border-box !important;
+    transition: none !important;
+    font-size: 14px !important;
+    max-width: 100% !important;
+}
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*All text that isn't a link*/
+td,
+input {
+    color: var(--text) !important;
+}
+
+/*Main Container*/
+.section.section--boxed,
+.loginform {
+    background-color: var(--surface0) !important;
+}
+
+/*All input boxes*/
+.login .loginform input[type="text"],
+.login .loginform input[type="password"],
+.pit form input[type="text"],
+input:autofill,
+#password,
+#confirm_password {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+    border: none !important;
+}
+}
+
+@-moz-document url-prefix("https://play.typeracer.com/?action=signup") {
+/*Racing - Sign Up (/?action=signup)*/
+
+/*Input forms*/
+input {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 0.5em !important;
+    outline: none !important;
+    border-radius: 5px !important;
+    box-sizing: border-box !important;
+    transition: none !important;
+    font-size: 14px !important;
+    max-width: 100% !important;
+}
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*Input forms*/
+input {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+}
+
+/*The header text*/
+td {
+    color: var(--text) !important;
+}
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/home"), url-prefix("https://data.typeracer.com/pit/latest") {
+/*Home (/pit/home)*/
+/*
 ========
 = HOME =
 ========
 */
+
+/* Centers the webpage by not allowing elements to grow for no reason */
+.themeContent,
+.main,
+.home,
+.whosHere {
+  max-width: fit-content !important;
+}
+
+
+/*Hides the profile pictures from "Who's Here"*/
+.userList__item__image {
+    display: none !important;
+}
+
+/*The current "Who's Here" Users container*/
+.userList {
+  padding: 10px;
+  border-radius: 10px;
+}
 
 /*Header and decorative images*/
 .pitStop__image,
@@ -773,6 +1398,7 @@ img[src="/public/images/silhouette.svg"] {
 {
     border: none !important;
     padding: 0 !important;
+    max-width: fit-content !important;
 }
 
 
@@ -784,9 +1410,10 @@ img[src="/public/images/silhouette.svg"] {
 /*Modifies the "Who's Here container"*/
 #tns1 {
     transform: none !important; /*To fix it to its parent container*/
-    width: auto;
+     width: 800px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    margin-left: 20px;
 }
 
 /*"Who's Here" users*/
@@ -794,40 +1421,67 @@ img[src="/public/images/silhouette.svg"] {
   width: auto; 
 }
 
+
 /*Removes all the duplicate entries in "Who's here"*/
+/*Apparently TypeRacer duplicates these entries for no reason
+in a very cumbersome way, possibly to make it seem as there are more users*/
 .tns-item:not([id^=tns1]) {
     display: none !important;
 }
 
 
-/*Makes the "Who's Here" and "Who's Racing" equal width*/
+/*Makes the menu description, "Who's Here" and "Who's Racing" equal width*/
+.pitStop, 
 .userList, 
-.whosRacing{
+.whosRacing {
   max-width: 1000px;
 }
 
-/*
-WH: Who's Here
-WR: Who's Racing
-*/
 
-/*Pitstop section description and the headers of "WH" and "WR"*/
+/*Pitstop section description and the headers of "Who's Here" and "Who's Racing"*/
 /*(for better alignment)*/
 .sectionHeading__title,
 .pitStop__content {
   margin-left: 10px;
 }
 
-/*The current WH Users container*/
-.userList {
-  padding: 10px;
-  border-radius: 10px;
-}
 
-/*Redundant description of "WR"*/
+
+/*Redundant description of "Who's Racing"*/
 .sectionHeading__title>span {
     display: none !important;
 }
+
+/*Converts the "Who's Racing" into a 2 column grid*/
+.latestGameResults {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+/*The container of the elements in "Who's Here"*/
+#tns1-ow {
+ width: 1000px;
+ margin-left: -10px;
+}
+
+/*The first entry of the second column in "Who's Racing"
+is lowered for some reason*/
+.messagesList li + li {
+    margin-top: 0 !important;
+}
+
+/*Reduces a bit the spacing between containers*/
+.userList__item__name {
+    padding-top: 0 !important;
+}
+
+.whosHere > div:nth-child(1) {
+  margin-bottom: 10px;
+}
+
+
 
 
 
@@ -837,57 +1491,10 @@ WR: Who's Racing
  ==================
 */
 
-/*Makes the links colorful!*/
-.main a:not(p>a) {
-    color: var(--accent) !important;
-}
-
-/*For better emphasis on headers, h2 = each page main title*/
-h2 {
-    color: var(--header2) !important;
-}
-
-
-/*Navigation header*/
-div,
-span
-{
-    color: var(--text) !important;
-}
-
-/*Paragraph text*/
-p {
-    color: var(--subtext1) !important;
-}
-
-/*The sub-header for navigation*/
-.headerSubmenu {
-    background-color: var(--crust) !important;
-}
-
-/*Active tab in navigation header*/
-.headerSubmenu .navLinks a.active {
-    background-color: var(--base) !important;
-}
-
-/*Hovered tab in navigation header*/
-.headerSubmenu .navLinks a:hover {
-    background-color: var(--mantle) !important;
-}
 
 /*Background of "Who's Here"*/
 .whosHere {
     background-color: transparent !important;
-}
-
-/*Main background*/
-.main {
-    background-color: var(--base) !important;
-}
-
-/*Most "basic" (lower) background*/
-.container {
-    background-color: var(--base) !important;
 }
 
 /*Background of the "Who's Here container"*/
@@ -899,5 +1506,725 @@ p {
 .latestGameResults>li {
     background-color: var(--surface0) !important;
 }
+
+/*Rainbow effect for "Who's Here"*/
+/*
+#tns1-item0 div{
+    color: var(--pink) !important;
+}
+#tns1-item1 div{
+    color: var(--mauve) !important;
+}
+#tns1-item2 div{
+    color: var(--red) !important;
+}
+#tns1-item3 div{
+    color: var(--peach) !important;
+}
+#tns1-item4 div{
+    color: var(--yellow) !important;
+}
+#tns1-item5 div{
+    color: var(--green) !important;
+}
+#tns1-item6 div{
+    color: var(--teal) !important;
+}
+#tns1-item7 div{
+    color: var(--sky) !important;
+}
+#tns1-item8 div{
+    color: var(--saphire) !important;
+}
+#tns1-item9 div{
+    color: var(--blue) !important;
+}
+#tns1-item10 div{
+    color: var(--lavender) !important;
+}
+#tns1-item11 div{
+    color: var(--pink) !important;
+}
+#tns1-item12 div{
+    color: var(--mauve) !important;
+}
+#tns1-item13 div{
+    color: var(--red) !important;
+}
+#tns1-item14 div{
+    color: var(--peach) !important;
+}
+#tns1-item15 div{
+    color: var(--yellow) !important;
+}
+*/
+
+/*Links of "Who's Here"*/
+/*
+div[id^="tns1-"] div {
+    color: var(--pink) !important;
+}
+*/
+
+
+
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/profile") {
+/*Profile (/pit/profile)*/
+
+/*Redundant/Annyoing Buttons*/
+.User__SocialMedia, /*Hides social media buttons*/
+/*Social media buttons in (/pit/race_history)*/
+.pageHeader > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2),
+.Car__Choose, /*"Change Avatar" button*/
+.Car>span /*"Avatar" text*/
+{
+    display: none  !important;
+}
+
+
+/*Removes the spacing between the username container
+and the WPM/stats_per_universe container*/
+.Profile__Card__User__Details {
+    justify-content: start !important;
+}
+
+/*Positions the WPM and universe stat selector
+to be above and below the username*/
+.User__WPM {
+    margin-left: -21em !important;
+}
+
+
+/*Aligns the username between the 
+stats selector and WPM*/
+.Details {
+    margin-top: 4em !important;
+}
+
+/*Makes the profile info section a 2x2 grid*/
+.Profile__Card {
+    display: grid !important;
+    grid-template-columns: 30em 15em !important;
+    column-gap: 3em;
+    row-gap: 1.5em;
+}
+
+/*General stats (max wpm, races, percentile, etc.)*/
+.Profile__Card__Stats {
+    margin-top: 4em !important; /*Aligns vertically with profile pic*/
+    margin-bottom: 1em !important; /*Aligns vertically with profile pic*/
+    grid-row: span 2; /*Gives it full height of the parent container*/
+    flex-direction: row !important; /*Makes Stats inside be side by side*/
+    /*Aesthetic options for background*/
+    padding: 1em;
+    border-radius: 1em;
+}
+
+/*Aligns both rows of stats horizontally*/
+.Profile__Card__Stats__Left {
+    padding-right: 0 !important;
+}
+.Profile__Card__Stats__Right {
+    padding-left: 0 !important;
+}
+
+/*Makes the stats be aligned vertically into 2 rows*/
+.Profile__Card__Stats__Left,
+.Profile__Card__Stats__Right {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 0 !important;
+}
+
+/*Aligns all stats horizontally*/
+.Profile__Stat__Wrapper {
+    padding: 0 !important;
+    flex: 1 !important;
+}
+
+/*The container of the text of the stats*/
+.Profile__Stat {
+    text-align: left !important;
+}
+
+/*The text of the stats*/
+.Profile__Stat span {
+    overflow-wrap: initial !important;
+}
+
+/*The value of the stat*/
+.Stat__Top {
+    font-size: large !important;
+}
+
+/*Makes the "Edit Account" Link Visible. Finally!!*/
+.Profile__Picture--hover {
+    position: absolute !important;
+    display: flex !important;
+    top: 8em;
+    font-weight: bold;
+}
+
+/*Aligns the Edit Account to the center so that the position
+is the same than when hovered*/
+.Profile__Picture {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/*Hides the "Edit Account" icon*/
+.Profile__Picture--hover>.icon {
+    display: none !important;
+
+}
+
+/*Evens better the spacing
+between about and avatar section*/
+.About__Wrap {
+    flex: 3 !important;
+}
+/*Sets the size of the Avatar/Car container*/
+.Car__Wrap {
+    flex: 1 !important;
+    padding: 0 !important;
+}
+
+/*Gives a bit of space between the Username and the profilePic*/
+.Username {
+    padding-left: 1em !important;
+}
+
+/*Makes the stats go full flex (better spacing & visibility)*/
+.Profile__Card__Stats {
+    width: 100% !important;
+    padding: 1em;
+    border-radius: 1em;
+}
+/*Arbitrary lenght of the part of the 
+card profile info that isn't the stats*/
+.Profile__Card__Description {
+    width: 26em !important;
+}
+
+/*Makes all of the big containers a fixed width*/
+.themeContent,
+.themeContent.pit,
+section.Section__Card
+{
+    max-width: 53em !important;
+
+}
+
+/*Removes some borders for a more clean look*/
+.Section__Card__Header,
+section.Section__Card 
+{
+    border: none !important;
+}
+
+/*Removes unnecsesary margin to allow for better centering*/
+.themeContent {
+    margin: 0 !important;
+}
+
+/*Centers the whole body*/
+.container .main {
+    justify-content: center !important;
+}
+
+/*Change universe dropdown*/
+.themeContent.login .loginform select,
+.themeContent.pit form select,
+.themeContent.pit form select:active 
+{
+    border: none !important;
+    background-image: none !important;
+    border-radius: 5px;
+}
+
+.Plan {
+    margin-left: 16em !important;
+}
+
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+
+/*Removing some backgrounds*/
+.Profile__Stat,
+.About,
+.Car,
+.Section__Card__Body__Btn,
+.Portable__Score__Card__Urls__Col .scorecardImgUrl .scorecardDirections
+{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/*Edit Account*/
+.Profile__Picture--hover {
+    color: var(--peach) !important;
+}
+
+
+/*All of the main containers*/
+.Section__Card {
+    background-color: var(--surface0) !important;
+}
+
+/*Stats container (max wpm, races, etc.)*/
+.Profile__Card__Stats {
+    background-color: var(--surface1) !important;
+}
+
+/*The Universe selection dropdown*/
+.themeContent.login .loginform select,
+.themeContent.pit form select {
+    background: var(--surface2);
+    color: var(--text);
+}
+
+/*The WPM*/
+h1 {
+    color: var(--blue) !important;
+}
+
+/*The background of the car/avatar*/
+.Profile__Card__Description .Car__Container__Hold .profileCar {
+    background-color: var(--surface0) !important;
+}
+
+/*The username*/
+.Username__Badge>h2 {
+    color: var(--green) !important;
+}
+
+.Message__User,
+.Report__User
+{
+    background-color: transparent !important;
+    font-size: larger !important;
+}
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/race_history") {
+/*History (/pit/race_history)*/
+
+.main {
+    max-width: 53em !important;
+}
+
+/*Makes all the entries be visible without needing to scroll as much*/
+.Scores__Table__Row div {
+    padding: 0 !important;
+}
+
+input,
+select {
+    border: none !important;
+}
+
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+
+input,
+select {
+    background-color: var(--crust) !important;
+    color: var(--text) !important;
+}
+
+.historyForm {
+    background-color: var(--surface0) !important;
+}
+
+
+/*CALENDAR ON THE DATE PICKER*/
+
+/*Main background*/
+#ui-datepicker-div {
+  background-color: var(--surface0);
+}
+
+/*The title of the calendar (month)*/
+.ui-datepicker-header {
+  background-color: var(--surface1);
+  border: none;
+}
+
+/*the border of the calendar*/
+.ui-widget.ui-widget-content {
+  border: 1px solid var(--overlay0);
+}
+
+/*The color of the days that aren't of this month*/
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+  background-color: var(--surface1);
+}
+
+/*The regular days of the month*/
+.ui-state-default, .ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default, .ui-button,
+.ui-button.ui-state-disabled:hover,
+.ui-button.ui-state-disabled:active {
+  border: none;
+  font-weight: bold;
+  background-color: var(--surface2);
+}
+
+/*The current day of the month*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  border: none;
+  background-color: var(--blue);
+}
+
+/*The hovered day*/
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover, .ui-button:focus {
+  border: none;
+  background-color: var(--surface1);
+}
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/competitions") {
+/*Competitions (/pit/competitions)*/
+
+.main {
+    max-width: 53em !important;
+}
+
+.scoresTable tr td {
+    padding: 3px !important;
+    border: none !important;
+}
+
+.scoresTable tr:nth-child(2n-1) td {
+    background-color: var(--surface1) !important;
+}
+
+.scoresTable tr:nth-child(2n) td {
+    background-color: var(--surface2) !important;
+}
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+.scoresTable tr td {
+    color: var(--text) !important;
+}
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/texts") {
+/*Texts (/pit/texts)*/
+
+/*Centers and narrows the page*/
+.main {
+    max-width: 53em;
+}
+
+/*Better margins*/
+.themeContent {
+    padding: 2em;
+    border-radius: 1em;
+}
+
+/*The languages in which there are results*/
+.facetResults {
+    border: none !important;
+}
+
+/*Next page button*/
+.themeContent > div:nth-child(7) > span:nth-child(1) {
+    margin-bottom: 1em !important;
+}
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*The generl background*/
+.themeContent {
+    background-color: var(--surface0) !important;
+}
+/*Each of the quotes containers*/
+.messagesList li {
+    background-color: var(--surface1) !important;
+    border: none !important;
+}
+
+/*The text that you are looking for*/
+.themeContent.pit ol li .searchResultSnippet b {
+  color: var(--yellow);
+}
+
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/friends") {
+/*Friends (/pit/friends)*/
+
+
+/*The container of the accept & reject buttons*/
+.expand > table:nth-child(1) > tbody:nth-child(1) {
+    display: flex !important;
+}
+
+/*The accept & reject buttons*/
+.expand > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1),
+.expand > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) 
+{
+    margin: 1em !important;
+    padding: 0.5em !important;
+    border-radius: 5px !important;
+}
+
+/*
+=================
+= FRIENDS TABLE =
+=================
+*/
+
+/*Enlargens the text of the table (90% by default)*/
+.friendsTable {
+    font-size: 100% !important;
+}
+
+.scoresTable tr th a,
+.friendsTable tr th a,
+.cellTable:not(.queryTable) tr th a {
+    text-decoration: none !important;
+}
+
+/*Makes the profile picture full height*/
+.userProfilePicLink {
+    display: block !important;
+}
+
+/*Regular cells*/
+.friendsTable tr td,
+.scoresTable tr td,
+.cellTable:not(.queryTable) tr td 
+{
+    text-align: center !important;
+}
+
+/*The all the cells in the table*/
+.friendsTable tr th,
+.friendsTable tr td {
+    border: none !important;
+}
+
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*The friend request container*/
+.themeContent .messagesList>li {
+    background-color: var(--surface0) !important;
+    border: none !important;
+}
+
+/*Accept Button*/
+.expand > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) {
+    background-color: var(--green) !important;
+}
+
+
+/*Reject Button*/
+.expand > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) {
+    background-color: var(--red) !important;
+}
+
+/*The text of the accept & Reject Buttons*/
+.expand > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > a:nth-child(1),
+.expand > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > a:nth-child(1)
+{
+    color: var(--base) !important;
+    font-weight: bold !important;
+}
+
+/*The text inside the user search*/
+.expand {
+    color: var(--text) !important;
+}
+
+
+/*
+=================
+= FRIENDS TABLE =
+=================
+*/
+
+/*The back of the header of the table
+(color should be the same as the background for round corners to not be ugly)*/
+.friendsTable > tbody:nth-child(1) > tr:nth-child(1) {
+    background-color: var(--base) !important;
+}
+
+
+/*Headers of the table*/
+th {
+    background-color: var(--mantle) !important;
+}
+
+/*Regular cells*/
+.friendsTable tr td,
+.scoresTable tr td,
+.cellTable:not(.queryTable) tr td 
+{
+    background-color: var(--surface1) !important;
+}
+
+/*The all the cells in the table*/
+.friendsTable tr th,
+.friendsTable tr td {
+    color: var(--text) !important;
+}
+
+
+
+
+    
+
+    
+    
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/friend_response") {
+/*Friend Request (/pit/friend_response)*/
+
+/* General Container */
+.themeContent {
+  width: fit-content;
+  margin: auto;
+}
+
+/*container above the message container*/
+.container .main {
+    flex: none !important;
+    margin: auto;
+    margin-top: 10em;
+}
+
+/*Message container*/
+.container .main .themeContent {
+  padding: 1em;
+  border-radius: 1em;
+  background-color: var(--surface0);
+}
+
+
+/* Back button*/
+.themeContent > p:nth-child(4) > a:nth-child(1),
+.themeContent > p:nth-child(3) > a:nth-child(1) {
+    background-color: var(--surface2);
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/messages"), url-prefix("https://data.typeracer.com/pit/message_compose"), url-prefix("https://data.typeracer.com/pit/conversation") {
+/*Messages (/pit/messages)*/
+
+
+/*Centers the content*/
+.themeContent {
+    max-width: 49em !important;
+    margin: auto !important;
+    margin-top: 2em !important;
+}
+
+/*Separates the "To" & "Message" text from the text areas*/
+.composeTable td:first-child {
+    text-align: center !important;
+    width: 7em !important;
+}
+
+/*Centers the title "Send message to another user"*/
+.pageTitle {
+    text-align: center !important;
+}
+
+/*Makes the "(enter a username)" be a visual separator*/
+.composeTable > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > em:nth-child(2) {
+    visibility: hidden !important;
+}
+
+/*The "To" and "Message" cells aka first column */
+.composeTable td:first-child {
+  text-align: center;
+  width: 7em;
+}
+
+
+/*Separates the "Send message" and "cancel" buttons*/
+.composeTable > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > input:nth-child(2) {
+    margin-right: 2em !important;
+}
+
+
+/*
+==============
+= RECOLORING =
+==============
+*/
+
+/*General container with content*/
+.container .section.section--boxed,
+.container .messagesList li{
+    background-color: var(--surface0) !important;
+    border: none !important;
+}
+
+.container .messagesList li table tbody tr td {
+    color: var(--text) !important;
+}
+
+
+}
+
+@-moz-document url-prefix("https://data.typeracer.com/pit/conversation") {
+/*Conversation (/pit/connversation)*/
+
+/*Widens the title*/
+.pageHeader > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) {
+    width: 80% !important;
+
+}
+/*Widens the text area to reply*/
+.composeTable td:first-child {
+    width: 100% !important;
+}
+
 
 }
