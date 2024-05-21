@@ -2,10 +2,15 @@
 ### ***Typeracer UI re-designed.***
 ## Features
 ✅ No ads nor self-promotion
+
 ✅ Minimal UI
+
 ✅ Catppuccin Colortheme
+
 ✅ Responsive Elements
+
 ✅ A sprinkle of memes
+
 ✅ 2k+ lines of code with helpful comments so you can customize it on your own
 
 ---
