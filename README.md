@@ -1,5 +1,11 @@
 # TypeRacer Re-Imagined
 ### ***Typeracer UI re-designed.***
+
+## Install
+https://userstyles.world/style/16038/tr-re-imagined
+
+Requirements: Stylus extension
+
 ## Features
 ✅ No ads nor self-promotion
 
