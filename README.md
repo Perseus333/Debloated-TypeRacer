@@ -1,2 +1,2 @@
-# Debloated-TypeRacer
-Typeracer is bloated no more
+# TypeRacer Re-Imagined
+Typeracer is bloated no more.
